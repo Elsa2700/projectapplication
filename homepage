@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>AJAX測試</title>
+<script type="text/javascript">
+	function getData(){
+		var req=new XMLHttpRequest();
+		req.open("get","http://127.0.0.1:8080/homepage.htm");
+		req.onload=function(){
+			var content=document.getElementById("content");
+			//alert(this.responseText);
+			content.innerHTML=this.responseText;
+		}
+		req.send();
+	
+	}
+	function init(){
+		var btn=document.getElementById("btn");
+		function handler(){
+			alert("網頁測試中");
+		}
+		btn.addEventListener("click",handler);
+	}
+	
+
+	function over(e){
+		e.style.color='red';
+	}
+	
+	function getdata(pagename){
+		var req=new XMLHttpRequest();
+		req.open("get","http://127.0.0.1:8080/"+pagename);
+		req.onload=function(){
+			var content=document.getElementById("content");
+			//alert(this.responseText);
+			content.innerHTML=this.responseText;
+		}
+		req.send();
+	
+	}	
+</script>
+
+<style type="text/css">
+	.head{
+	background-color:#b85f5f;height:50px;color:#ebf0f2;text-align:center;font-size:35px;font-weight:bold;
+	line-height:50px;padding:10px;
+	}
+	
+
+	body{
+	margin:0px;background-color:#fcf7fb;font-family:"微軟正黑體";display: flex;flex-direction: column;height: 100%;
+	}
+	
+	/* nav 樣式設定 */
+	
+	nav{
+	display:flex;
+	text-align:right;
+	font-weight:bold;
+	font-size:20px;
+	}
+	
+	.menu{
+	flex:auto;width:70%;
+	background-color:#e3d1ba;
+	padding:10px;}	
+	.menu:hover{
+	color:white;font-size:30px;
+	}
+	.piece{
+	flex:auto;
+	background-color:#fab661;
+	padding:10px;}
+	.piece:hover{
+	color:white;font-size:30px;
+	}
+	.about{
+	flex:auto;
+	background-color:#f79c2a;
+	padding:10px;}
+	.about:hover{
+	color:white;font-size:30px;
+	}
+	.photo{
+	flex:auto;
+	background-color:#f29705;
+	padding:10px;}
+	.photo:hover{
+	color:white;font-size:30px;
+	}
+	
+	/* footer 樣式設定 */
+	
+	footer{
+	align-items:end;display:flex;margin:0;height:100px;
+	
+	}
+	.footer{flex-shrink: 0;}
+	.footerbox{
+	background-color:#a395a0;flex:auto;
+	font-size:18px;color:white;font-weight:bold;
+	padding:10px;
+	}
+
+	#btn{
+	border:0.5px solid #0a4237;
+	position:relative;top:1px;right:-2px;
+	}
+	#btn:hover{
+	background-color:#daf2ed;
+	}
+	input{
+	width:300px;
+	}
+	input:focus{
+	background-color:#edf7f5;
+	}
+	.content{
+	height:2000px;width:1200px;flex:none;justify-content:center;
+	}	
+</style>
+</head>
+<body onload="getdata('homepage.htm')">
+	<header class="head">悄悄的世界</header>
+	<nav>
+		<div onclick="getdata('homepage.htm')" class="menu">首頁</div>
+		<div onclick="getdata('about.htm')" class="about">關於</div>
+		<div onclick="getdata('piece.htm')" class="piece">作品</div>
+		<div onclick="getdata('photo.htm')" class="photo">成就</div>
+	</nav>
+	<article class="content" id="content"></article>
+	<footer class="footer" onclick="init()">
+		<div class="footerbox">
+			<div><h3>歡迎聯繫</h3></div>
+			<span style="font-size:14px">意見回饋</span><input type="text"/><button id="btn">送出</button>			
+		</div>
+	</footer>
+</body>
+</html>
